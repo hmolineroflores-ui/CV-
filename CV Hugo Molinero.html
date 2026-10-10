@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo Molinero — Urbanista | CV</title>
+<style>
+  :root{
+    --navy:#0d2a3a;
+    --navy-2:#14465c;
+    --teal:#127a8b;
+    --accent:#f0a92c;
+    --ink:#22313a;
+    --body:#3f5563;
+    --muted:#6b808d;
+    --line:#e2e8ec;
+    --soft:#f7fafb;
+    --bg:#eef2f5;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:15px;
+    line-height:1.58;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:1120px;
+    margin:28px auto 40px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 18px 50px rgba(13,42,58,.15);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(135deg,#0d2a3a 0%,#14465c 55%,#127a8b 100%);
+    color:#fff;
+    padding:42px 46px 34px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 88% 15%, rgba(240,169,44,.30), transparent 45%),
+      radial-gradient(circle at 12% 95%, rgba(255,255,255,.12), transparent 42%);
+    pointer-events:none;
+  }
+  .hero > *{position:relative;z-index:1}
+  .eyebrow{
+    margin:0 0 6px;
+    font-size:.76rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#9fd3dc;
+    font-weight:700;
+  }
+  .hero h1{
+    margin:0;
+    font-size:2.65rem;
+    line-height:1.08;
+    letter-spacing:-.5px;
+    font-weight:800;
+  }
+  .hero h1 span{color:var(--accent)}
+  .tagline{
+    margin:12px 0 0;
+    font-size:1rem;
+    color:#d7e6ec;
+    max-width:640px;
+  }
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:24px;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.28);
+    color:#fff;
+    text-decoration:none;
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:.84rem;
+    font-weight:600;
+    transition:background .2s ease, transform .2s ease, border-color .2s ease;
+  }
+  .chip:hover{
+    background:rgba(240,169,44,.9);
+    border-color:rgba(240,169,44,.9);
+    color:#22160a;
+    transform:translateY(-2px);
+  }
+  .cedulas{
+    margin-top:22px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.18);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 30px;
+    font-size:.78rem;
+    color:#b9d2db;
+    letter-spacing:.03em;
+  }
+  .cedulas strong{color:#fff;font-weight:600}
+
+  /* ---------- LAYOUT ---------- */
+  .content{padding:36px 46px 46px}
+  .layout{
+    display:grid;
+    grid-template-columns:1.85fr 1fr;
+    gap:38px;
+    align-items:start;
+  }
+
+  /* ---------- SECTION TITLES ---------- */
+  .sec-title{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:0 0 20px;
+    font-size:.82rem;
+    font-weight:800;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--navy-2);
+  }
+  .sec-title::after{
+    content:"";
+    flex:1;
+    height:2px;
+    border-radius:2px;
+    background:linear-gradient(90deg,var(--accent),rgba(240,169,44,0));
+  }
+  .block{margin-bottom:42px}
+  .block:last-child{margin-bottom:0}
+
+  /* ---------- OBJETIVO ---------- */
+  .objetivo{
+    background:linear-gradient(135deg,#f2f8fa,#fbfdfe);
+    border:1px solid #dbe9ee;
+    border-left:5px solid var(--accent);
+    border-radius:12px;
+    padding:20px 24px;
+    margin-bottom:42px;
+  }
+  .objetivo p{margin:0;color:var(--body);font-size:.95rem}
+  .objetivo .label{
+    display:block;
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:800;
+    margin-bottom:8px;
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .job{
+    position:relative;
+    padding-left:24px;
+    padding-bottom:24px;
+    border-left:2px solid var(--line);
+    margin-left:7px;
+  }
+  .job:last-child{border-left-color:transparent;padding-bottom:2px}
+  .job::before{
+    content:"";
+    position:absolute;
+    left:-8px;
+    top:5px;
+    width:12px;height:12px;
+    border-radius:50%;
+    background:var(--accent);
+    border:2px solid #fff;
+    box-shadow:0 0 0 2px rgba(240,169,44,.28);
+  }
+  .job h3{
+    margin:0;
+    font-size:1rem;
+    font-weight:700;
+    color:var(--navy);
+    line-height:1.35;
+  }
+  .job .org{
+    display:block;
+    font-size:.88rem;
+    font-weight:600;
+    color:var(--teal);
+    margin-top:2px;
+  }
+  .job .dates{
+    display:inline-block;
+    margin-top:6px;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:3px 11px;
+  }
+  .job p{
+    margin:9px 0 0;
+    font-size:.9rem;
+    color:var(--body);
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .side-card{
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:20px;
+  }
+  .side-card:last-child{margin-bottom:0}
+  .side-card .sec-title{margin-bottom:14px;font-size:.76rem}
+  .side-card .sec-title::after{background:linear-gradient(90deg,rgba(240,169,44,.75),rgba(240,169,44,0))}
+
+  .edu-item{padding-bottom:14px;margin-bottom:14px;border-bottom:1px dashed #dbe4e9}
+  .edu-item:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
+  .edu-item h4{margin:0;font-size:.92rem;color:var(--navy);font-weight:700;line-height:1.35}
+  .edu-item span{
+    display:block;
+    font-size:.78rem;
+    color:var(--muted);
+    margin-top:4px;
+    letter-spacing:.03em;
+  }
+  .edu-item em{
+    display:block;
+    font-style:normal;
+    font-size:.76rem;
+    color:var(--teal);
+    font-weight:600;
+    margin-top:4px;
+  }
+
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tags span{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:5px 12px;
+    font-size:.78rem;
+    font-weight:600;
+    color:var(--navy-2);
+  }
+
+  .plain-list{list-style:none;margin:0;padding:0}
+  .plain-list li{
+    position:relative;
+    padding-left:20px;
+    margin-bottom:9px;
+    font-size:.87rem;
+    color:var(--body);
+  }
+  .plain-list li:last-child{margin-bottom:0}
+  .plain-list li::before{
+    content:"";
+    position:absolute;
+    left:0;top:8px;
+    width:7px;height:7px;
+    border-radius:2px;
+    background:var(--teal);
+    transform:rotate(45deg);
+  }
+
+  /* ---------- FULL WIDTH LISTS ---------- */
+  .cols{
+    columns:2;
+    column-gap:36px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .cols li{
+    break-inside:avoid;
+    position:relative;
+    padding-left:20px;
+    margin-bottom:11px;
+    font-size:.87rem;
+    color:var(--body);
+    line-height:1.5;
+  }
+  .cols li::before{
+    content:"";
+    position:absolute;
+    left:0;top:7px;
+    width:7px;height:7px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+  .cols li strong{color:var(--navy);font-weight:700}
+  .cols li em{font-style:normal;color:var(--muted);font-size:.82rem}
+
+  .pub{
+    background:var(--soft);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    border-radius:10px;
+    padding:16px 20px;
+    margin-bottom:14px;
+  }
+  .pub:last-child{margin-bottom:0}
+  .pub p{margin:0;font-size:.88rem;color:var(--body)}
+  .pub strong{color:var(--navy)}
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    background:linear-gradient(135deg,#0d2a3a,#14465c);
+    color:#c9dde4;
+    padding:26px 46px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    align-items:center;
+    justify-content:space-between;
+    font-size:.84rem;
+  }
+  .footer a{
+    color:var(--accent);
+    text-decoration:none;
+    font-weight:700;
+    border-bottom:1px dashed rgba(240,169,44,.6);
+    padding-bottom:1px;
+  }
+  .footer a:hover{color:#ffd27a;border-bottom-style:solid}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;gap:30px}
+    .hero{padding:34px 26px 28px}
+    .hero h1{font-size:2.1rem}
+    .content{padding:28px 26px 36px}
+    .footer{padding:22px 26px}
+    .cols{columns:1}
+  }
+  @media (max-width:520px){
+    .page{margin:0;border-radius:0}
+    .hero h1{font-size:1.8rem}
+    .chip{font-size:.78rem;padding:7px 13px}
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    body{background:#fff;font-size:11pt}
+    .page{margin:0;box-shadow:none;border-radius:0;max-width:100%}
+    .hero{background:#0d2a3a !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .block{break-inside:avoid}
+    .job{break-inside:avoid}
+    .footer{background:#0d2a3a !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    a{color:inherit;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <p class="eyebrow">Licenciado en Urbanismo · Maestro en Urbanismo</p>
+    <h1>Hugo <span>Molinero</span></h1>
+    <p class="tagline">Planificación territorial · Gestión de políticas públicas · Análisis de datos y Sistemas de Información Geográfica</p>
+
+    <div class="chips">
+      <a class="chip" href="mailto:hmolineroflores@gmail.com">✉️ hmolineroflores@gmail.com</a>
+      <a class="chip" href="tel:+525517735424">📱 55 1773 5424</a>
+      <a class="chip" href="https://hugomolinero-recmuyxq.manus.space/" target="_blank" rel="noopener">🌐 CV digital</a>
+    </div>
+
+    <div class="cedulas">
+      <span><strong>Cédula profesional Licenciatura:</strong> 5510999</span>
+      <span><strong>Cédula profesional Maestría:</strong> 08744375</span>
+    </div>
+  </header>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="content">
+
+    <!-- OBJETIVO -->
+    <div class="objetivo">
+      <span class="label">Objetivo</span>
+      <p>Actualizarme constantemente para diagnosticar y establecer los lineamientos para la acción social, pública o privada en el campo de la planificación, la gestión de políticas y del medio ambiente.</p>
+    </div>
+
+    <div class="layout">
+
+      <!-- ============ COLUMNA PRINCIPAL ============ -->
+      <main>
+
+        <!-- APTITUDES -->
+        <section class="block">
+          <h2 class="sec-title">Aptitudes</h2>
+          <p style="margin:0;font-size:.94rem;color:var(--body)">
+            Capacidad para el análisis multidimensional de problemáticas sociales y urbanas a diferentes escalas,
+            aplicando SIG y <em>dashboards</em> en el procesamiento y visualización de datos, así como en la
+            formulación de políticas públicas adecuadas y útiles.
+          </p>
+        </section>
+
+        <!-- SECTOR PRIVADO -->
+        <section class="block">
+          <h2 class="sec-title">Colaboración en el sector privado</h2>
+
+          <article class="job">
+            <h3>Analista en Planeación Territorial</h3>
+            <span class="org">Ecourba S.A. de C.V.</span>
+            <span class="dates">Junio 2024 – Diciembre 2024</span>
+            <p>Desarrollo de fundamentación teórica y metodológica para estudio de <em>suitability</em> (aptitud del suelo) a nivel nacional, aplicando esquemas de ponderación que definen rangos óptimos según las características del terreno. Análisis de factibilidad de sistema ferroviario urbano en Celaya, evaluando impactos positivos en un buffer de 1 km mediante estudio de vitalidad urbana.</p>
+          </article>
+
+          <article class="job">
+            <h3>Especialista en Análisis Territorial</h3>
+            <span class="org">Espacio Multiescalar</span>
+            <span class="dates">Mayo 2024 – Julio 2024 · Híbrido</span>
+            <p>Análisis y redacción de documentos de los PMDU de Camargo, Francisco y Madero, Guachochi, Jiménez y Múzquiz, en los temas de equipamiento, espacio público, análisis de vivienda (mercado) y actividades económicas, así como su consulta pública.</p>
+          </article>
+
+          <article class="job">
+            <h3>Especialista en Análisis Territorial</h3>
+            <span class="org">Otra Praxis</span>
+            <span class="dates">Abril 2024 – Julio 2024 · Híbrido</span>
+            <p>Especialista en análisis territorial y trabajo de campo para la redacción de documentos de los PMDU de Acolman, Otumba y Temoaya, en los temas de aspectos socioeconómicos, continuo municipal, infraestructura y análisis de vivienda (mercado), y su consulta pública.</p>
+          </article>
+
+          <article class="job">
+            <h3>Especialista en Análisis Territorial</h3>
+            <span class="org">Servicios Integrales e Ingeniería MOCAL S.A. de C.V.</span>
+            <span class="dates">Octubre 2021 – Enero 2022 · Remoto</span>
+            <p>Especialista en análisis territorial para la elaboración de los Programas Municipales de Desarrollo Urbano de Tixkokob, Izamal y Tinúm, en el Estado de Yucatán: aspectos socioeconómicos, espacio público, vivienda (mercado) y equipamiento urbano, y su consulta pública.</p>
+          </article>
+
+          <article class="job">
+            <h3>Consultor en Políticas Públicas (subcontratación)</h3>
+            <span class="org">Mejor Ciudad.org</span>
+            <span class="dates">Marzo – Julio 2019 · Híbrido</span>
+            <p>Co-coordinador del proyecto y de los planes de trabajo para el diagnóstico y propuestas en el estudio denominado “Política General de Desarrollo Urbano, Suelo y Vivienda, Ciudad de México”.</p>
+          </article>
+
+          <article class="job">
+            <h3>Asesor en Movilidad Urbana (subcontratación)</h3>
+            <span class="org">Buró Verde Arquitectura</span>
+            <span class="dates">Junio 2018 · Octubre – Diciembre 2019 · Híbrido</span>
+            <p>Análisis y procesamiento de datos extraídos del análisis territorial de campo (aforos peatonales y vehiculares, levantamiento de estacionamiento, tiempos de recorrido y encuestas) para ocho zonas de la Ciudad de México.</p>
+          </article>
+
+          <article class="job">
+            <h3>Consultor en Análisis de Mercado, Normatividad Urbana, Políticas Públicas y Procesamiento de Datos</h3>
+            <span class="org">RVL Consultores S.A. de C.V. — Tres proyectos</span>
+            <span class="dates">Febrero – Septiembre 2011 · Remoto</span>
+            <p>Diagnóstico y proceso de datos para la factibilidad de un análisis de mercado de un desarrollo habitacional en el municipio de Texcoco. Elaboración del diagnóstico de normatividad para la construcción de un modelo de consulta vía internet para las ciudades de Guadalajara, Nuevo León, Naucalpan y Toluca. Diagnóstico para la elaboración de manuales en normatividad mediante matrices de datos para la interpretación de análisis de mercado y usos de suelo para el Estado de Tamaulipas.</p>
+          </article>
+
+          <article class="job">
+            <h3>Analista en Bases de Datos y SIG</h3>
+            <span class="org">Cal y Mayor y Asociados</span>
+            <span class="dates">Junio 2008 – Julio 2009</span>
+            <p>Estandarización de base de datos e integración de los proyectos de la gerencia de aforos e ingresos en una base geoespacial de carreteras.</p>
+          </article>
+        </section>
+
+        <!-- SECTOR PÚBLICO -->
+        <section class="block">
+          <h2 class="sec-title">Colaboración en el sector público</h2>
+
+          <article class="job">
+            <h3>Analista de trabajo de campo — Equipamiento urbano y espacio público</h3>
+            <span class="dates">Colaboración</span>
+            <p>Análisis de trabajo de campo para identificar las necesidades de los habitantes de diferentes colonias, con el fin de implementar proyectos de equipamientos urbanos y espacios públicos, y la asignación de medidas de integración urbana. Analista del mercado inmobiliario de la Alcaldía Miguel Hidalgo.</p>
+          </article>
+
+          <article class="job">
+            <h3>Analista de trabajo de campo — Utopías y Territoriales de Iztapalapa</h3>
+            <span class="dates">Colaboración</span>
+            <p>Análisis de trabajo de campo en temas de normatividad, aspectos socioeconómicos, demográficos, medio ambiente y movilidad, para el análisis complementario de algunas Utopías, así como de 4 de las 13 Territoriales de Iztapalapa.</p>
+          </article>
+
+          <article class="job">
+            <h3>Modelo de gestión del Patrimonio Inmobiliario Federal (PIF)</h3>
+            <span class="dates">Colaboración</span>
+            <p>Construcción de un nuevo modelo para el programa de gestión y aprovechamiento del patrimonio inmobiliario federal (PIF), para una mejor toma de decisiones de dicho patrimonio.</p>
+          </article>
+
+          <article class="job">
+            <h3>Proyecto SIEDU-2 — Sistema de Información para la Evaluación del Desarrollo Urbano</h3>
+            <span class="org">SEDUVI, Ciudad de México</span>
+            <span class="dates">Colaboración</span>
+            <p>Participación en los temas de aspectos sociales, económicos y ambientales.</p>
+          </article>
+
+          <article class="job">
+            <h3>Proyecto de seguridad sobre violencia y delincuencia</h3>
+            <span class="org">Cinco delegaciones del Distrito Federal</span>
+            <span class="dates">Colaboración</span>
+            <p>Proyecto de seguridad “Sobre la Realidad Social, Económica y Cultural de la Violencia y la Delincuencia”.</p>
+          </article>
+
+          <article class="job">
+            <h3>Programas Parciales de la Delegación Coyoacán</h3>
+            <span class="dates">Colaboración</span>
+            <p>Participación en la actualización del Programa Parcial de la Colonia Del Carmen y del Programa Parcial Centro Histórico, en temas de participación ciudadana, vivienda y usos de suelo.</p>
+          </article>
+
+          <article class="job">
+            <h3>Coordinador de campo — Movilidad urbana</h3>
+            <span class="org">Municipio de Cuautitlán Izcalli, Estado de México</span>
+            <span class="dates">Colaboración</span>
+            <p>Coordinación de campo para la elaboración del proyecto de movilidad urbana en diez grandes corredores.</p>
+          </article>
+        </section>
+
+        <!-- SECTOR ACADÉMICO -->
+        <section class="block">
+          <h2 class="sec-title">Colaboración en el sector académico</h2>
+
+          <article class="job">
+            <h3>Evaluación de programas de estudio</h3>
+            <span class="org">Maestría y Doctorado en Urbanismo, UNAM</span>
+            <p>Evaluación de los programas de estudio de la Maestría y Doctorado en Urbanismo y su comparativa con los posgrados similares a nivel nacional, para su posible modificación y actualización.</p>
+          </article>
+
+          <article class="job">
+            <h3>Análisis de espacio público en campus universitarios</h3>
+            <span class="org">UNAM</span>
+            <p>Análisis en trabajo de campo del espacio público en temas de movilidad, transporte, características sociales, ambientales y problemáticas presentes en el contexto urbano de los campus de la UNAM.</p>
+          </article>
+
+          <article class="job">
+            <h3>Actualización del POZMVM 2016</h3>
+            <span class="org">PUEC — Programa Universitario de Estudios Sobre la Ciudad</span>
+            <p>Participación en la actualización del Programa de Ordenamiento de la Zona Metropolitana del Valle de México, en los temas económicos e infraestructura.</p>
+          </article>
+
+          <article class="job">
+            <h3>Diseño de proyectos urbanos — Sistema Puerta Bicentenario (SPB)</h3>
+            <span class="org">Puerta Otay y Puerta México, Tijuana</span>
+            <p>Trabajo de campo para el diseño de proyectos urbanos de “Ordenamiento Integral del Sistema de Puerta Bicentenario (SPB) Puerta Otay y Puerta México”.</p>
+          </article>
+        </section>
+
+      </main>
+
+      <!-- ============ COLUMNA LATERAL ============ -->
+      <aside>
+
+        <!-- EDUCACIÓN -->
+        <div class="side-card">
+          <h2 class="sec-title">Educación</h2>
+
+          <div class="edu-item">
+            <h4>Maestría en Urbanismo, Área Desarrollo Urbano Regional</h4>
+            <span>Programa de Maestría y Doctorado en Urbanismo, UNAM · 2009 – 2012</span>
+            <em>Cédula No. 08744375</em>
+          </div>
+
+          <div class="edu-item">
+            <h4>Licenciatura en Urbanismo</h4>
+            <span>Universidad Nacional Autónoma de México, Facultad de Arquitectura · 2001 – 2006</span>
+            <em>Cédula No. 5510999</em>
+          </div>
+        </div>
+
+        <!-- ACADEMIA -->
+        <div class="side-card">
+          <h2 class="sec-title">Academia</h2>
+          <p style="margin:0 0 14px;font-size:.87rem;color:var(--body)">
+            <strong style="color:var(--navy)">Profesor de asignatura</strong> en la Facultad de Arquitectura de la UNAM desde hace 9 años.
+          </p>
+          <ul class="plain-list">
+            <li>Taller Integral 1° y 2° semestre</li>
+            <li>Sistemas Urbano Arquitectónicos 1</li>
+            <li>Procesos de Diseño Urbano Ambiental I y II</li>
+            <li>Diseño Urbano Ambiental, 7° y 8° semestre</li>
+          </ul>
+        </div>
+
+        <!-- SOFTWARE -->
+        <div class="side-card">
+          <h2 class="sec-title">Software</h2>
+          <div class="tags">
+            <span>ArcMap</span>
+            <span>QGIS</span>
+            <span>AutoCAD</span>
+            <span>Power BI</span>
+            <span>Office 360</span>
+          </div>
+        </div>
+
+        <!-- CONOCIMIENTOS -->
+        <div class="side-card">
+          <h2 class="sec-title">Conocimientos</h2>
+          <ul class="plain-list">
+            <li>Análisis de datos para la toma de decisiones</li>
+            <li>Análisis de normatividad y políticas públicas</li>
+            <li>Análisis multicriterio en diferentes temas</li>
+          </ul>
+        </div>
+
+        <!-- HABILIDADES -->
+        <div class="side-card">
+          <h2 class="sec-title">Habilidades</h2>
+          <ul class="plain-list">
+            <li>Comunicación afectiva</li>
+            <li>Planificación</li>
+            <li>Trabajo en grupo</li>
+            <li>Apertura de ideas</li>
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- ============ CURSOS ============ -->
+    <section class="block" style="margin-top:42px">
+      <h2 class="sec-title">Cursos, mesas y asesorías de planeación territorial</h2>
+      <ul class="cols">
+        <li><strong>Estrategias para la innovación: Ciudades Hidrointeligentes</strong> — Coursera, junio 2025</li>
+        <li><strong>Gestión medioambiental global</strong> — Coursera, mayo 2025</li>
+        <li><strong>Sistemas de Consulta e Información Estadística y Geográfica del INEGI</strong> — agosto 2024</li>
+        <li><strong>Geotécnicas de Criminología</strong> — Instituto de Geografía, UNAM, diciembre 2023</li>
+        <li><strong>Modelos de localización económica, análisis espacial y cartografía con QGIS y GeoDa</strong> — Facultad de Economía, septiembre 2023</li>
+        <li><strong>Ciencias de Información Geoespacial</strong> — CentroGeo, julio 2023</li>
+        <li><strong>Capacitación de la Norma Oficial Mexicana NOM-001, Espacios Públicos</strong> — SEDATU, febrero 2023</li>
+        <li><strong>Gestión de la Valorización para el Financiamiento Urbano y Metropolitano</strong> — SEDATU–BID, febrero a mayo 2022</li>
+        <li><strong>Mesa redonda “Innovación en Materia de Políticas Públicas, Perspectivas y Desafíos del Sistema de Planeación y Evaluación de la Ciudad de México”</strong> — EVALUA, junio 2022</li>
+        <li><strong>Sistemas de Información Geográfica</strong> — consultora Cogno.biz, febrero 2021</li>
+        <li><strong>Fundamentos de simulación de tránsito (nivel introductorio)</strong> — Programa de Estudios Sobre la Ciudad, octubre 2021</li>
+        <li><strong>Métodos y Técnicas de Análisis Económico Regional y Urbano</strong> — Instituto de Investigaciones Económicas, UNAM, mayo–agosto 2020</li>
+        <li><strong>Comercialización Inmobiliaria y El Patrimonio Inmobiliario y sus Oportunidades en las Ciudades</strong> — INDAABIN, 2016</li>
+        <li><strong>Asesor en el Segundo Taller sobre Prioridades de Investigación y Acción sobre Pobreza y Desarrollo Territorial</strong> — Facultad de Economía UNAM–SEDATU, 2011</li>
+      </ul>
+    </section>
+
+    <!-- ============ CONGRESOS Y DOCENCIA ============ -->
+    <section class="block">
+      <h2 class="sec-title">Congresos, ponencias y participación docente</h2>
+      <ul class="cols">
+        <li><strong>Dictaminador</strong> del manuscrito “El presente y futuro de la ocupación del suelo al oriente del Estado de México”, 8° Congreso Nacional de Suelo, 2025</li>
+        <li><strong>Ponente y moderador</strong> en el 8° Congreso de Suelo Urbano, Ciudad de Oaxaca, marzo 2025</li>
+        <li><strong>Tallerista</strong> en el 4° Congreso Internacional de Estudios sobre la Ciudad — Espacio público y diseño urbano participativo, octubre 2024</li>
+        <li><strong>Curso:</strong> Inteligencia Artificial: tecnologías creativas aplicadas a la arquitectura, junio 2024</li>
+        <li><strong>Ponente y moderador</strong> en el 7° Congreso Nacional de Suelo Urbano, FA UNAM, octubre 2023</li>
+        <li><strong>Ponente</strong> en el 3er Congreso Internacional de Estudios sobre la Ciudad, IIEc–PUEC, UNAM, octubre 2023</li>
+        <li><strong>Curso:</strong> La Inteligencia Artificial y su impacto en el proceso de enseñanza-aprendizaje, agosto 2023</li>
+        <li><strong>Trabajo colegiado</strong> del Área Urbano Ambiental en la primera etapa de diagnóstico de la revisión del plan de estudios 2017, octubre 2022</li>
+        <li><strong>Curso:</strong> Inclusión de estudiantes con discapacidad en la educación superior, octubre 2022</li>
+        <li><strong>Cursos:</strong> Hacia la educación en línea durante la contingencia / Lo imprescindible de la educación a distancia, noviembre 2020</li>
+        <li><strong>Curso:</strong> ¿Cómo acompañar a mis alumnos en el cambio de paradigma?, septiembre 2021</li>
+        <li><strong>Curso:</strong> Identificación de la violencia en el aula y herramientas para su contención en la práctica docente, agosto 2021</li>
+        <li><strong>Curso:</strong> Procesos de Diseño Urbano Ambiental II, diciembre 2019</li>
+        <li><strong>Ponente</strong> en el Congreso Nacional de Suelo Urbano, 2019</li>
+        <li><strong>Curso:</strong> Desarrollo de cursos en modalidad mixta o a distancia con la plataforma Moodle, agosto 2018</li>
+        <li><strong>Curso:</strong> Introducción y apoyo para la presentación al Concurso de Oposición Abierto, mayo–junio 2018</li>
+        <li><strong>Participación</strong> en el primer foro académico de la 32 Muestra Estudiantil, UNAM, 2018</li>
+        <li><strong>Ponente</strong> en el Congreso Nacional de Suelo Urbano, 2017</li>
+        <li><strong>Diplomado en Formación Docente</strong>, intersemestral, noviembre 2017</li>
+        <li><strong>Participación</strong> en el marco del Día Mundial del Urbanismo: Egresados; Su Experiencia Profesional, UNAM, 2017</li>
+        <li><strong>Participación</strong> en la Jornada Universitaria de Orientación Vocacional, 2014</li>
+        <li><strong>Ponente</strong> en el Congreso Internacional de Urbanismo y Medio Ambiente, junio 2010</li>
+        <li><strong>Ponente</strong> en el Congreso Nacional de Suelo Urbano, septiembre 2010</li>
+      </ul>
+    </section>
+
+    <!-- ============ ARTÍCULOS ============ -->
+    <section class="block">
+      <h2 class="sec-title">Artículos y publicaciones</h2>
+
+      <div class="pub">
+        <p><strong>Artículo</strong> — “Una nueva ciudad, una nueva infraestructura generadora de actividad económica y gestión eficaz de incorporación de suelo regulado, caso de estudio: Cuautitlán Izcalli, Estado de México”. Memorias del IV Congreso Nacional de Suelo Urbano, El Colegio Mexiquense, 2011.</p>
+      </div>
+
+      <div class="pub">
+        <p><strong>Capítulo de libro</strong> — “Análisis de Integración Socioespacial en Cuautitlán Izcalli”, en <em>Investigaciones y Enfoques Contemporáneos en los Estudios Urbanos</em>, Centro de Estudios Demográficos, Urbanos y Ambientales, El Colegio de México, A.C., 2017.</p>
+      </div>
+
+      <div class="pub">
+        <p><strong>Anuario Digital de Investigación del Posgrado en Urbanismo</strong> — “Contexto socio territorial de las personas en situación de calle en la Ciudad de México”, 2023.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <span>Hugo Molinero · Urbanismo, planeación territorial y políticas públicas</span>
+    <span>CV digital: <a href="https://hugomolinero-recmuyxq.manus.space/" target="_blank" rel="noopener">hugomolinero-recmuyxq.manus.space</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
